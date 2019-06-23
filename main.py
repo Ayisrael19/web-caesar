@@ -10,43 +10,44 @@ form = """
     <head>
     <title>Web Caesar</title>
         <style>
-            form {
+            form {{
                 background-color: #eee;
                 padding: 20px;
                 margin: 0 auto;
                 width: 540px;
                 font: 16px sans-serif;
                 border-radius: 10px;
-            }
-            textarea {
+            }}
+            textarea {{
                 margin: 10px 0;
                 width: 540px;
                 height: 120px;
-            }
+            }}
         </style>
     </head>
     <body>
         <!-- create your form here -->
-        <form action="/table" method="post">
+        <form action="/" method="post">
             <label for = "text">
             	Rotate By:
 			</label>
             <input type="text" name="rot" placeholder = "0">
-            <textarea name="text"></textarea>
-			<br>
+            <textarea name="text">{0}</textarea><br>
             <input type="submit" value="Submit">
         </form> 
     </body>
 </html>
 """
 
-@app.route("/")
-def encrypt(text,rot):
+@app.route("/", methods=['POST'])
+def encrypt():
+    text =(request.form.get('text'))
+    rot = int((request.form.get('rot')))
     new_text=rotate_string(text,rot)
-    return f"<h1>{new_text}</h1>"
+    return form.format(new_text)
 
 @app.route("/")
 def index():
-    return form
+    return form.format(" ")
 
 app.run()
