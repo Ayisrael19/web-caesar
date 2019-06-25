@@ -31,7 +31,7 @@ form = """
             <label for = "text">
             	Rotate By:
 			</label>
-            <input type="text" name="rot" placeholder = "0">
+            <input type="text" name="rot" value = 0>
             <textarea name="text">{0}</textarea><br>
             <input type="submit" value="Submit">
         </form> 
